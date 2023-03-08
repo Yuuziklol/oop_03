@@ -2,20 +2,20 @@ package Unit;
 
 public abstract class Farmer extends Warrior{
     protected int delivery;
-    public Farmer(String name, int hp, int maxHp, int damage, int maxDamage, int att, int def, int rage, int maxRage,int speed,int x,int y,int delivery) {
-        super(name, hp, maxHp, damage, maxDamage, att, def, rage, maxRage, speed, x, y);
+    public Farmer(int posX, int posY,String name, int hp, int maxHp, int damage, int maxDamage, int att, int def, int rage, int maxRage,int speed,int delivery) {
+        super(posX,posY,name, hp, maxHp, damage, maxDamage, att, def, rage, maxRage, speed);
         this.delivery = delivery;
     }
 
     public Farmer(String name) {
-        super(name, 1, 1, 1,1, 1, 1, 0, 100,3,0,0);
+        super(0,0,name, 1, 1, 1,1, 1, 1, 0, 100,3);
         this.delivery = 1;
     }
 
-    @Override
-    public void step(){
+    // @Override
+    // public void step(){
 
-    }
+    // }
 
     @Override
     public String getInfo(){

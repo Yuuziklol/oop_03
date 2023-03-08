@@ -2,89 +2,51 @@ import Unit.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
-
-import Unit.CrossbowMan;
-import Unit.Default;
-import Unit.Farmer;
-import Unit.Mage;
-import Unit.Monk;
-import Unit.Rogue;
-import Unit.Sniper;
-import Unit.SpearMan;
+import java.util.Vector;
 public class Main {
-
+    static final int UNITS = 10;
+    public static ArrayList<Default> firstTeam = new ArrayList<>();
+    public static ArrayList<Default> secondTeam = new ArrayList<>();
+    public static ArrayList<Default> allTeam = new ArrayList<>();
     public static void main(String[] args) {
-        ArrayList<Default> firstTeam = new ArrayList<>();
-        ArrayList<Default> secondTeam = new ArrayList<>();
-        ArrayList<Default> allTeam = new ArrayList<>();
-        System.out.println("Комманда 1:");
-        for (int i = 0; i < 10; i++) {
-            int rand = new Random().nextInt(4);
-            
-            switch(rand){
-                case (0):
-                    firstTeam.add(new Farmer(getName()){});
-                    allTeam.add(firstTeam.get(i));
-                    System.out.print(firstTeam.get(i).getInfo() + ", ");
-                    break;
-                case (1):
-                    firstTeam.add(new Rogue(getName()){});
-                    allTeam.add(firstTeam.get(i));
-                    System.out.print(firstTeam.get(i).getInfo() + ", ");
-                    break;
-                case (2):
-                    firstTeam.add(new Sniper(getName()){});
-                    allTeam.add(firstTeam.get(i));
-                    System.out.print(firstTeam.get(i).getInfo() + ", ");
-                    break;
-                case (3):
-                    firstTeam.add(new Mage(getName()){});
-                    allTeam.add(firstTeam.get(i));
-                    System.out.print(firstTeam.get(i).getInfo() + ", ");
-                    break;
-            }
-        }
-        System.out.println();
-        System.out.println("Комманда 2:");
-        for (int i = 0; i < 10; i++) {
-            int rand = new Random().nextInt(4);
-            switch(rand){
-                case (0):
-                    secondTeam.add(new Farmer(getName()){});
-                    allTeam.add(secondTeam.get(i));
-                    System.out.print(secondTeam.get(i).getInfo() + ", ");
-                    break;
-                case (1):
-                    secondTeam.add(new SpearMan(getName()){});
-                    allTeam.add(secondTeam.get(i));
-                    System.out.print(secondTeam.get(i).getInfo() + ", ");
-                    break;
-                case (2):
-                    secondTeam.add(new CrossbowMan(getName()){});
-                    allTeam.add(secondTeam.get(i));
-                    System.out.print(secondTeam.get(i).getInfo() + ", ");
-                    break;
-                case (3):
-                    secondTeam.add(new Monk(getName()){});
-                    allTeam.add(secondTeam.get(i));
-                    System.out.print(secondTeam.get(i).getInfo() + ", ");
-                    break;
-            }
-            allTeam.sort(new Comparator<Default>() {
-                @Override
-                public int compare(Default o1, Default o2){
-                    if (o2.getSpeed() == o1.getSpeed()) {
-                        return o1.getHp() - o2.getHp();
-                    }
-                    return o2.getSpeed()-o1.getSpeed();
-                }
-            });
-        }
-        System.out.println();
-        System.out.println(allTeam.toString());
+        createTeam(firstTeam, 0, 1);
+        createTeam(secondTeam, 3, 10);
     }
-    private static String getName(){
-        String name= String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);
-        return name;
+    static void createTeam (ArrayList team, int offset, int posY){
+        for (int i = 1; i <= UNITS; i++) {
+            int rnd = new Random().nextInt(4) + offset;
+            switch (rnd){
+                case (0):
+                    team.add(new Sniper(Default.getName(),i, posY));
+                    break;
+                case (1):
+                    team.add(new Rogue(Default.getName(),i, posY));
+                    break;
+                case (2):
+                    team.add(new Mage(Default.getName(),i, posY));
+                    break;
+                case (3):
+                    team.add(new Farmer(Default.getName(),i, posY));
+                    break;
+                case (4):
+                    team.add(new CrossbowMan(Default.getName(),i, posY));
+                    break;
+                case (5):
+                    team.add(new Monk(Default.getName(),i, posY));
+                    break;
+                case (6):
+                    team.add(new Spearman(Default.getName(),i, posY));
+                    break;
+            }
+        }
+    }
+    static void sortTeam(ArrayList<Default> team){
+        team.sort(new Comparator<Default>() {
+            @Override
+            public int compare(Default t0, Default t1){
+                if (t0.getSpeed() == t1.getSpeed()) return (int) (t0.getHp() - t1.getHp());
+                else return (int) (t0.getSpeed() - t1.getSpeed());
+            }
+        });
     }
 }
