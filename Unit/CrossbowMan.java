@@ -1,6 +1,6 @@
 package Unit;
 
-public abstract class CrossbowMan extends Archer {
+public class CrossbowMan extends Archer {
     public CrossbowMan(int posX,int posY,String name, int hp, int maxHp, int damage,int maxDamage, int att,  int def, int shots, int maxShots, float dist, int speed) {
         super(posX,posY,name, hp, maxHp, damage,maxDamage, att,  def, shots, maxShots, dist, speed);
     }

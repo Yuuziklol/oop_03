@@ -1,6 +1,6 @@
 package Unit;
 
-public abstract class Rogue extends Warrior{
+public class Rogue extends Warrior{
     public Rogue(int posX, int posY,String name, int hp, int maxHp, int damage, int maxDamage, int att, int def, int rage, int maxRage,int speed) {
         super(posX,posY,name, hp, maxHp, damage, maxDamage, att, def, rage, maxRage, speed);
     }

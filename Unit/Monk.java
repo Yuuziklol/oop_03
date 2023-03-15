@@ -1,6 +1,6 @@
 package Unit;
 
-public abstract class Monk extends SpellCaster{
+public class Monk extends SpellCaster{
     public Monk(int posX, int posY,String name,int hp, int maxHp, int damage, int maxDamage, int att, int def, int mp, int maxMp, float dist,int speed,int magic) {
         super(posX,posY,name, hp, maxHp, damage, maxDamage, att, def, mp, maxMp, dist, speed, magic);
     }

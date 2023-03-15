@@ -11,6 +11,11 @@ public class Main {
     public static void main(String[] args) {
         createTeam(firstTeam, 0, 1);
         createTeam(secondTeam, 3, 10);
+
+        for (Default def: allTeam) {
+            if (firstTeam.contains(def)) def.step(firstTeam, secondTeam);
+            else def.step(secondTeam, firstTeam);
+        }
     }
     static void createTeam (ArrayList team, int offset, int posY){
         for (int i = 1; i <= UNITS; i++) {
@@ -35,7 +40,7 @@ public class Main {
                     team.add(new Monk(Default.getName(),i, posY));
                     break;
                 case (6):
-                    team.add(new Spearman(Default.getName(),i, posY));
+                    team.add(new SpearMan(Default.getName(),i, posY));
                     break;
             }
         }

@@ -1,5 +1,7 @@
 package Unit;
 
+import java.util.ArrayList;
+
 public abstract class SpellCaster extends Default{
     protected int mp,maxMp;
     protected float dist;
@@ -10,5 +12,19 @@ public abstract class SpellCaster extends Default{
         this.maxMp = maxMp;
         this.dist = dist;
         this.magic = magic;
+    }
+    public void step(ArrayList<Default> team1, ArrayList<Default> team2){
+        if (state.equals("Die") || magic <= 0 ) return;
+        ArrayList<Default> firstTeam;
+        if (team1.contains(this)) {firstTeam = team1;}
+        else {firstTeam = team2;}
+
+        for(Default ally:firstTeam){
+            if(ally.hp < ally.maxHp){
+                ally.getDamage(this.damage);
+                break;
+            }
+        }
+
     }
 }

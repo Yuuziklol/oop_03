@@ -1,6 +1,8 @@
 package Unit;
 
-public abstract class Farmer extends Warrior{
+import java.util.ArrayList;
+
+public class Farmer extends Warrior{
     protected int delivery;
     public Farmer(int posX, int posY,String name, int hp, int maxHp, int damage, int maxDamage, int att, int def, int rage, int maxRage,int speed,int delivery) {
         super(posX,posY,name, hp, maxHp, damage, maxDamage, att, def, rage, maxRage, speed);
@@ -20,5 +22,9 @@ public abstract class Farmer extends Warrior{
     @Override
     public String getInfo(){
         return "Я крестьянин";
+    }
+    @Override
+    public void step(ArrayList<Default> team1, ArrayList<Default> team2){
+        if (!this.state.equals("Die")) this.state = "Stand";
     }
 }
